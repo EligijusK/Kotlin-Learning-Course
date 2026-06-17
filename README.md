@@ -1,5 +1,5 @@
 # Kotlin-Learning-Course
-Learning kotlin using LinkedIn course
+Learning Kotlin using LinkedIn course
 
 * Courses that code includes:
   * Kotlin Essential Training: Functions, Collections, and I/O
