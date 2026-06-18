@@ -1,10 +1,13 @@
 package org.example.courseTwo
 
+import java.util.Properties
+
 fun main(args: Array<String>) {
 //    classesLesson(args)
 //    interfacesLesson(args)
 //    enumsLesson(args)
-    dataClassesLesson(args)
+//    dataClassesLesson(args)
+    objectClassesLesson(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -98,3 +101,24 @@ fun dataClassesLesson(args: Array<String>) {
 }
 
 /* Fourth Object-Oriented lesson working with Data classes Ends */
+
+/* Fifth Object-Oriented lesson working with Object classes Begins */
+
+fun objectClassesLesson(args: Array<String>) {
+
+    println(NetworkConfig.baseUrl)
+    println(NetworkConfig.getNetworkDetails()) // Objects implemented interface function
+
+    val provider: NetworkInfoProvider = object: NetworkInfoProvider { // object provider only exists in this scope cycle
+
+        override fun getNetworkDetails(): String {
+            return "Mu haha"
+        }
+
+    }
+
+    println(provider.getNetworkDetails())
+
+}
+
+/* Fifth Object-Oriented lesson working with Object classes Ends */
