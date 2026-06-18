@@ -2,7 +2,8 @@ package org.example.courseTwo
 
 fun main(args: Array<String>) {
 //    classesLesson(args)
-    interfacesLesson(args)
+//    interfacesLesson(args)
+    enumsLesson(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -46,3 +47,26 @@ fun interfacesLesson(args: Array<String>) {
 }
 
 /* Second Object-Oriented lesson working with interfaces Ends */
+
+/* Third Object-Oriented lesson working with Enums Begins */
+
+// North
+// East
+// South
+// West
+
+fun enumsLesson(args: Array<String>) {
+    val direction:Direction = Direction.WEST // Created Enum that holds selected value
+    println(direction.name) // Name value is string representation of selected value
+    println(direction.ordinal) // Ordinal value is index value of that type
+    val parsedDirection: Direction = Direction.valueOf("WEST") // Value can be taken by enum value
+    println(parsedDirection.name)
+
+    val apiValue = Direction.entries[2] // It's possible to get all values of Enum with enties
+    println(apiValue.name)
+
+    val color: HighlightColor = HighlightColor.BLUE
+    println(color.value) // Accessing color enum argument parameter
+}
+
+/* Third Object-Oriented lesson working with Enums Ends */
