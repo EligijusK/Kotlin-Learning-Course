@@ -1,5 +1,6 @@
 package org.example.courseTwo
 
+import java.util.concurrent.Executors
 import kotlin.random.Random
 
 fun main(args: Array<String>) {
@@ -14,7 +15,8 @@ fun main(args: Array<String>) {
 //    topLevelVariablesLesson(args)
 //    extensionPropertiesLesson(args)
 //    delegationLesson(args)
-    topLevelFunctionsChallenge(args)
+//    topLevelFunctionsChallenge(args)
+    threadsLesson(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -258,3 +260,44 @@ fun topLevelFunctionsChallenge(args: Array<String>) {
 }
 
 /* Challenge Idiomatic working with top-level functions Ends */
+
+/* First Async lesson working with Threads Begins */
+
+// It extends thread class and overrides run function
+class CustomThread: Thread("CustomThread") {
+    override fun run() {
+        super.run()
+        println(Thread.currentThread().name)
+        println("CustomThread.run()")
+    }
+}
+
+class CustomRunnable: Runnable{ // This is for managing multiple functions, creating runnable which can be passed to thread
+    override fun run() {
+        println(Thread.currentThread().name)
+    }
+}
+
+val executor = Executors.newSingleThreadExecutor() // This is threadpool for one thread
+val multiThreadExecutors = Executors.newFixedThreadPool(3)
+
+fun threadsLesson(array: Array<String>) {
+    println(Thread.currentThread().name)
+
+//    CustomThread().start()
+//    CustomThread().start()
+//    Thread(CustomRunnable()).start()
+//    executor.submit(CustomRunnable()) // Adding thread to threadpool
+//    multiThreadExecutors.shutdown(CustomRunnable())
+    for (i in 0..10) {
+        multiThreadExecutors.submit(CustomRunnable())
+    }
+}
+
+/* First Async lesson working with Threads Ends */
+
+
+/* Second Async lesson working with Coroutines Begins */
+
+
+/* Second Async lesson working with Coroutines Ends */
