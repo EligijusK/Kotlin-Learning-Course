@@ -233,7 +233,12 @@ fun extensionPropertiesLesson(array: Array<String>) {
 /* Third Idiomatic lesson working with Delegates Starts */
 
 fun delegationLesson(array: Array<String>) {
-
+    // Created delegate of applicationLogger
+//    val applicationLogger = ApplicationLogger(SimpleLogger())
+//    applicationLogger.log("example", applicationLogger)
+    val viewModel = ViewModel() // Created ViewModel with lazy delegate
+    viewModel.search("Kotlin") // First time initialize logger, because we invoke it first time
+    viewModel.search("Java")
 }
 
 /* Third Idiomatic lesson working with Delegates Ends */
