@@ -11,7 +11,9 @@ fun main(args: Array<String>) {
 //    sealedClassesLesson(args)
 //    companionObjetsLesson(args)
 //    sealedClassesChallenge(args)
-    topLevelVariablesLesson(args)
+//    topLevelVariablesLesson(args)
+//    extensionPropertiesLesson(args)
+    delegationLesson(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -201,7 +203,37 @@ private fun log(error: Throwable) = println(error)
 
 fun topLevelVariablesLesson(args: Array<String>) {
 
-    val duration = milisForMinutes(5)
+    val duration = millisForMinutesFunc(5)
 
 }
 /* First Idiomatic lesson working with Top-level properties Ends */
+
+/* Second Idiomatic lesson working with Extension properties Starts */
+
+val Int.isEven: Boolean // This is Extended Int with boolean variable which checks if its even
+get() = this % 2 == 0
+
+fun extensionPropertiesLesson(array: Array<String>) {
+
+    val duration: Int = 5
+    val millisMinute = duration.millisForMinutes()
+    println(millisMinute)
+    println(duration.millisForHours())
+    println(100.millisForHours())
+
+    "[abc]+".toRegex()
+
+    println(6.isEven)
+    val log: Long = 10L
+    log.log()
+}
+
+/* Second Idiomatic lesson working with Extension properties Starts */
+
+/* Third Idiomatic lesson working with Delegates Starts */
+
+fun delegationLesson(array: Array<String>) {
+
+}
+
+/* Third Idiomatic lesson working with Delegates Ends */
