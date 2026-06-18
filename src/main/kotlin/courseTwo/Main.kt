@@ -10,7 +10,8 @@ fun main(args: Array<String>) {
 //    objectClassesLesson(args)
 //    sealedClassesLesson(args)
 //    companionObjetsLesson(args)
-    sealedClassesChallenge(args)
+//    sealedClassesChallenge(args)
+    topLevelVariablesLesson(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -192,3 +193,15 @@ fun sealedClassesChallenge(args: Array<String>) {
 }
 
 /* Object-Oriented challenge working with Sealed class Ends */
+
+/* First Idiomatic lesson working with Top-level properties Starts */
+
+const val DEFAULT_CLICK_DELAY = 500
+private fun log(error: Throwable) = println(error)
+
+fun topLevelVariablesLesson(args: Array<String>) {
+
+    val duration = milisForMinutes(5)
+
+}
+/* First Idiomatic lesson working with Top-level properties Ends */
