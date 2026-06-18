@@ -7,7 +7,8 @@ fun main(args: Array<String>) {
 //    interfacesLesson(args)
 //    enumsLesson(args)
 //    dataClassesLesson(args)
-    objectClassesLesson(args)
+//    objectClassesLesson(args)
+    sealedClassesLesson(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -122,3 +123,34 @@ fun objectClassesLesson(args: Array<String>) {
 }
 
 /* Fifth Object-Oriented lesson working with Object classes Ends */
+
+/* Sixth Object-Oriented lesson working with Sealed classes Begins */
+
+fun render(state: UiState) { // It's eather
+    when (state) {
+        is UiState.Loading -> println("Loading...")
+        is UiState.Loaded -> {
+            println("Loaded: ${state.title}")
+        }
+        is UiState.Error -> println("Error")
+    }
+}
+
+fun sealedClassesLesson(args: Array<String>) {
+
+    var state: UiState = UiState.Loading
+    render(state)
+    state = UiState.Loaded(title = "Kotlin", subtitle = "Is cool!")
+    render(state)
+    state = UiState.Error(IllegalStateException())
+    render(state)
+
+}
+
+/* Sixth Object-Oriented lesson working with Sealed classes Ends */
+
+/* Seventh Object-Oriented lesson working with Comparison objects Begins */
+
+
+
+/* Seventh Object-Oriented lesson working with Comparison objects Ends */
