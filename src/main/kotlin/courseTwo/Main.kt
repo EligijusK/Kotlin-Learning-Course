@@ -1,14 +1,13 @@
 package org.example.courseTwo
 
-import java.util.Properties
-
 fun main(args: Array<String>) {
 //    classesLesson(args)
 //    interfacesLesson(args)
 //    enumsLesson(args)
 //    dataClassesLesson(args)
 //    objectClassesLesson(args)
-    sealedClassesLesson(args)
+//    sealedClassesLesson(args)
+    companionObjetsLesson(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -149,8 +148,24 @@ fun sealedClassesLesson(args: Array<String>) {
 
 /* Sixth Object-Oriented lesson working with Sealed classes Ends */
 
-/* Seventh Object-Oriented lesson working with Comparison objects Begins */
+/* Seventh Object-Oriented lesson working with Companion objects Begins */
+
+// Kotlin doesn't have static variables
+// This can be done using Companion objects
+
+fun companionObjetsLesson(args: Array<String>) {
+//    val controller = SearchController.Companion.create("Kotlin") // This is full calling of function
+    val controller = SearchController.create("Kotlin") // If it's invoked in kotlin, it doesn't need companion
+}
+
+/* Seventh Object-Oriented lesson working with Companion objects Ends */
+
+/* Object-Oriented challenge working with Sealed class Begins */
+
+fun sealedClassesChallenge(args: Array<String>) {
 
 
 
-/* Seventh Object-Oriented lesson working with Comparison objects Ends */
+}
+
+/* Object-Oriented challenge working with Sealed class Ends */
