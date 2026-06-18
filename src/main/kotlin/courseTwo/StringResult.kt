@@ -1,4 +1,6 @@
 package org.example.courseTwo
 
-class StringResult {
+sealed class StringResult {
+    data class Success(val result: String) : StringResult()
+    data class Failure(val error: Throwable) : StringResult()
 }

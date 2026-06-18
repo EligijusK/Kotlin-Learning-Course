@@ -1,5 +1,7 @@
 package org.example.courseTwo
 
+import kotlin.random.Random
+
 fun main(args: Array<String>) {
 //    classesLesson(args)
 //    interfacesLesson(args)
@@ -7,7 +9,8 @@ fun main(args: Array<String>) {
 //    dataClassesLesson(args)
 //    objectClassesLesson(args)
 //    sealedClassesLesson(args)
-    companionObjetsLesson(args)
+//    companionObjetsLesson(args)
+    sealedClassesChallenge(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -162,9 +165,29 @@ fun companionObjetsLesson(args: Array<String>) {
 
 /* Object-Oriented challenge working with Sealed class Begins */
 
+fun getRandomString(): String {
+    val rand = Random.nextInt(10)
+    return if (rand > 5) {
+        throw IllegalStateException()
+    } else {
+        rand.toString()
+    }
+}
+
+fun getString(): StringResult {
+    return try {
+        StringResult.Success(getRandomString())
+    } catch (exception: IllegalStateException) {
+        StringResult.Failure(exception)
+    }
+}
+
 fun sealedClassesChallenge(args: Array<String>) {
 
-
+    when (val state = getString()) {
+        is StringResult.Success -> println(state.result)
+        is StringResult.Failure -> println("Error: ${state.error.toString()}")
+    }
 
 }
 
