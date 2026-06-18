@@ -13,7 +13,8 @@ fun main(args: Array<String>) {
 //    sealedClassesChallenge(args)
 //    topLevelVariablesLesson(args)
 //    extensionPropertiesLesson(args)
-    delegationLesson(args)
+//    delegationLesson(args)
+    topLevelFunctionsChallenge(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -242,3 +243,18 @@ fun delegationLesson(array: Array<String>) {
 }
 
 /* Third Idiomatic lesson working with Delegates Ends */
+
+/* Challenge Idiomatic working with top-level functions Begins */
+
+fun topLevelFunctionsChallenge(args: Array<String>) {
+
+    val array = arrayOf(1, 2, 3)
+    val set = setOf("a", "b", "c")
+    val arrayConvertedList = array.toNonEmptyList()
+    val setConvertedList = set.toNonEmptyList()
+//    Array .(arrayOf(1, 2, 3))
+//    List .setToNonEmptyList(setOf("a", "b", "c"))
+
+}
+
+/* Challenge Idiomatic working with top-level functions Ends */
