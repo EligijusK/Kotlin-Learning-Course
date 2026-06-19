@@ -1,5 +1,9 @@
 package org.example.courseTwo
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Executors
 import kotlin.random.Random
 
@@ -16,7 +20,8 @@ fun main(args: Array<String>) {
 //    extensionPropertiesLesson(args)
 //    delegationLesson(args)
 //    topLevelFunctionsChallenge(args)
-    threadsLesson(args)
+//    threadsLesson(args)
+    coroutinesLesson(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -297,7 +302,16 @@ fun threadsLesson(array: Array<String>) {
 /* First Async lesson working with Threads Ends */
 
 
-/* Second Async lesson working with Coroutines Begins */
+/* Second Async lesson working with Understanding coroutines Begins */
+
+// Multiple coroutines can be run on single thread
+
+// Coroutines can be nested one coroutine can be started ir another coroutine
 
 
-/* Second Async lesson working with Coroutines Ends */
+
+fun coroutinesLesson(array: Array<String>) = runBlocking {
+    launch { println("Hello Coroutines") }
+}
+
+/* Second Async lesson working with Understanding coroutines Ends */
