@@ -324,7 +324,7 @@ fun asyncChallenge(array: Array<String>): Unit = runBlocking {
 
     val loadedItemsFromNetwork = async { loadItemsFromNetwork() }
     val loadedItemsFromDB = async { loadItemsFromDB() }
-    val result = awaitAll(loadedItemsFromNetwork, loadedItemsFromDB)
+    val result = awaitAll(loadedItemsFromNetwork, loadedItemsFromDB) // await also returns results of coroutine
     val mergedResults = result[0] + result[1]
     println(mergedResults)
 }
