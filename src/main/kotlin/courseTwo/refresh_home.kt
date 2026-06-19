@@ -54,6 +54,7 @@ fun main(): Unit = runBlocking { // In the same coroutine code runs sequentially
         updateUI()
     }
 
+
     // Dispatchers.IO Moves coroutine on to worker threads
     val job = launch { refreshUser() }
     job.cancel() // this will cancel this job

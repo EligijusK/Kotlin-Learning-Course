@@ -1,7 +1,9 @@
 package org.example.courseTwo
 
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.awaitAll
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import java.util.concurrent.Executors
@@ -21,7 +23,7 @@ fun main(args: Array<String>) {
 //    delegationLesson(args)
 //    topLevelFunctionsChallenge(args)
 //    threadsLesson(args)
-    coroutinesLesson(args)
+    asyncChallenge(args)
 }
 
 /* First Object-Oriented lesson working with classes Begins */
@@ -302,16 +304,29 @@ fun threadsLesson(array: Array<String>) {
 /* First Async lesson working with Threads Ends */
 
 
-/* Second Async lesson working with Understanding coroutines Begins */
+/* Challenge Async working with Multiple async requests Begins */
 
 // Multiple coroutines can be run on single thread
 
 // Coroutines can be nested one coroutine can be started ir another coroutine
 
-
-
-fun coroutinesLesson(array: Array<String>) = runBlocking {
-    launch { println("Hello Coroutines") }
+private suspend fun loadItemsFromDB(): List<String> {
+    delay(5000)
+    return listOf("Kotlin", "Java", "C#")
 }
 
-/* Second Async lesson working with Understanding coroutines Ends */
+private suspend fun loadItemsFromNetwork(): List<String> {
+    delay(5000)
+    return listOf("Rust", "Python", "C")
+}
+
+fun asyncChallenge(array: Array<String>): Unit = runBlocking {
+
+    val loadedItemsFromNetwork = async { loadItemsFromNetwork() }
+    val loadedItemsFromDB = async { loadItemsFromDB() }
+    val result = awaitAll(loadedItemsFromNetwork, loadedItemsFromDB)
+    val mergedResults = result[0] + result[1]
+    println(mergedResults)
+}
+
+/* Challenge Async working with Multiple async requests Ends */
