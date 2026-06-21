@@ -7,6 +7,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun Greeting0105(
@@ -14,11 +15,12 @@ fun Greeting0105(
 ) {
     Text(
         text = "Having fun with Compose?",
-        modifier = modifier.padding(16.dp)
+        modifier = modifier.padding(16.dp), // dp is for scalable icons and other things
+        fontSize = 40.sp // sp is for scalable text
     )
 }
 
-@Preview(
+@Preview( // Multiple previews for multiple devices
     showBackground = true,
     device = Devices.NEXUS_5,
     name = "Nexus 5"
