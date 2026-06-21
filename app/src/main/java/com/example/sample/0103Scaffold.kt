@@ -22,10 +22,10 @@ import com.example.red30.compose.ui.theme.Red30TechTheme
 @Composable
 private fun Scaffold0103(modifier: Modifier = Modifier) {
     Red30TechTheme {
-        Scaffold(
+        Scaffold( // This is main container, in this container there are defined top container, bottom container and main content container
             modifier = modifier.fillMaxSize(),
             topBar = {
-                TopAppBar(
+                TopAppBar( // Top container
                     colors = topAppBarColors(
                         containerColor = MaterialTheme.colorScheme.primaryContainer,
                         titleContentColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -35,7 +35,7 @@ private fun Scaffold0103(modifier: Modifier = Modifier) {
                     }
                 )
             },
-            bottomBar = {
+            bottomBar = { // Bottom container
                 BottomAppBar(
                     containerColor = MaterialTheme.colorScheme.primaryContainer,
                     contentColor = MaterialTheme.colorScheme.onPrimaryContainer,
@@ -43,7 +43,7 @@ private fun Scaffold0103(modifier: Modifier = Modifier) {
                     Text("I'm the bottom bar")
                 }
             }
-        ) { innerPadding: PaddingValues ->
+        ) { innerPadding: PaddingValues -> // Main content container
             Column(
                 modifier = Modifier
                     .padding(innerPadding)
@@ -53,7 +53,7 @@ private fun Scaffold0103(modifier: Modifier = Modifier) {
             ) {
                 Text(
                     modifier = Modifier.fillMaxWidth(),
-                    text = "This is my primary content",
+                    text = "This is my primary content that is center aligned and desecrate",
                     textAlign = TextAlign.Center,
                     style = MaterialTheme.typography.headlineLarge
                 )
@@ -62,8 +62,8 @@ private fun Scaffold0103(modifier: Modifier = Modifier) {
     }
 }
 
-@Preview(showBackground = true)
-@Composable
+@Preview(showBackground = true) // This app composable allows to preview current UI without using emulator
+@Composable // This UI builds preview automatically after changes
 private fun Scaffold0103Preview() {
     Scaffold0103()
 }
