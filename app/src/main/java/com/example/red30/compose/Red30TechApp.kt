@@ -21,7 +21,7 @@ import com.example.red30.compose.ui.theme.Red30TechTheme
 @Composable
 fun Red30TechApp(modifier: Modifier = Modifier) {
     Red30TechTheme {
-        Scaffold(
+        Scaffold( // this is primary container
             modifier = modifier.fillMaxSize()
         ) { innerPadding ->
             Column(
