@@ -21,7 +21,7 @@ import com.example.red30.compose.ui.theme.Red30TechTheme
 import androidx.compose.foundation.Image as createImage
 
 @Composable
-fun Red30TechAppExtended(modifier: Modifier = Modifier) {
+fun Red30TechAppExtended(modifier: Modifier = Modifier) { // Jetpack compose uses for functions upper-case
     Red30TechTheme(
         darkTheme = isSystemInDarkTheme(),
         dynamicColor = false,
