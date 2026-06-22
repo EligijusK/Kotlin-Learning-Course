@@ -60,7 +60,7 @@ fun Challenge0107(modifier: Modifier = Modifier) {
                         fontSize = 14.sp,
                         textAlign = TextAlign.Center,
                         color = MaterialTheme.colorScheme.secondary,
-                        style = MaterialTheme.typography.headlineLarge,
+                        style = MaterialTheme.typography.bodyLarge,
                     )
                 }
             }
