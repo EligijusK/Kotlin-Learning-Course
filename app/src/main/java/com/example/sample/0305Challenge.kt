@@ -20,6 +20,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -64,6 +65,9 @@ private fun Challenge0305(
             EnterGuess(
                 modifier = Modifier.padding(innerPadding),
                 guess = guess,
+                guessChanged = {
+                    newGuess -> guess = newGuess // It gets new guess and changes initial guess
+                },
                 checkGuess = {
                     guessedState = states.find { it.contains(guess, ignoreCase = true) }
                     guess = ""
@@ -79,8 +83,9 @@ private fun Challenge0305(
 private fun EnterGuess(
     modifier: Modifier = Modifier,
     guess: String,
+    guessChanged: (String) -> Unit,
     checkGuess: () -> Unit,
-    // TODO: update
+
 ) {
     Column(
         modifier = modifier.fillMaxWidth(),
@@ -90,16 +95,14 @@ private fun EnterGuess(
         TextField(
             value = guess,
             onValueChange = {
-                // TODO: update
+                guessChanged(it) // After state is updated, now textField changes text
             },
             placeholder = { Text("Enter a state") },
             maxLines = 1
         )
         Spacer(modifier = Modifier.height(24.dp))
         Button(
-            onClick = {
-                // TODO: update
-            }
+            onClick = { checkGuess() }
         ) {
             Text(
                 text = "Make your guess",
