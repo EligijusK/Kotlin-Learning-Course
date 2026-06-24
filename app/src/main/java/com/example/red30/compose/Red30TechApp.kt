@@ -12,6 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.red30.compose.ui.Red30TechNavHost
+import com.example.red30.compose.ui.screen.FavoritesScreen
+import com.example.red30.compose.ui.screen.SessionDetailScreen
+import com.example.red30.compose.ui.screen.SessionsScreen
+import com.example.red30.compose.ui.screen.SpeakersScreen
 import com.example.red30.compose.ui.theme.Red30TechTheme
 import com.example.red30.data.ConferenceRepository
 import com.example.red30.data.SessionInfo
@@ -30,6 +38,11 @@ fun Red30TechApp(
         val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
         Scaffold { innerPadding ->
+            Red30TechNavHost(
+                modifier = Modifier.padding(innerPadding),
+                navController = rememberNavController(),
+                viewModel = viewModel,
+            )
             Column(
                 modifier = modifier
                     .fillMaxSize()
