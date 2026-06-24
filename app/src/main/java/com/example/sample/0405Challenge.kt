@@ -15,21 +15,35 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.ViewModel
 import com.example.red30.compose.ui.component.SessionTags
 import com.example.red30.compose.ui.theme.Red30TechTheme
 import com.example.red30.data.SessionInfo
+import com.example.red30.data.fake
+import com.example.red30.data.fake2
+import com.example.red30.data.fake3
+import com.example.red30.data.fake4
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 
-//private class FavoritesViewModel: ViewModel() {
-//    private val _sessionInfo = MutableStateFlow<SessionInfo>(SessionInfo.fake())
-//    val sessionInfo: StateFlow<SessionInfo> = _sessionInfo
-//
-//    fun toggleFavorite() {
-//        // TODO: update the sessionInfo with the new favorite value
-//    }
-//}
+private class FavoritesViewModel: ViewModel() {
+    private val _sessionInfo = MutableStateFlow<SessionInfo>(SessionInfo.fake())
+    val sessionInfo: StateFlow<SessionInfo> = _sessionInfo
+
+    fun toggleFavorite() {
+        _sessionInfo.update {
+            it.copy(
+                isFavorite = !it.isFavorite
+            )
+        }
+    }
+}
 
 @Composable
 private fun SessionItem(
@@ -72,17 +86,19 @@ private fun SessionItem(
     }
 }
 
+
 @Preview
 @Composable
 private fun Challenge0405Preview() {
-    // TODO: Create the needed variables
+    val favoritesViewModel = FavoritesViewModel()
+    val sessionInfo by favoritesViewModel.sessionInfo.collectAsState()
 
     Red30TechTheme {
         Surface {
-//            SessionItem(
-//                sessionInfo = ,
-//                onFavoriteClick = {  }
-//            )
+            SessionItem(
+                sessionInfo = sessionInfo,
+                onFavoriteClick = { favoritesViewModel.toggleFavorite() }
+            )
         }
     }
 }
