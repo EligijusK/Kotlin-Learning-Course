@@ -4,9 +4,12 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.red30.compose.ui.theme.Red30TechTheme
@@ -17,11 +20,13 @@ import com.example.red30.data.fake3
 import com.example.red30.data.fake4
 import com.example.red30.data.fake5
 import com.example.red30.data.fake6
+import com.example.red30.R
 
 @Composable
 fun SessionsScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
+    onButtonClick: () -> Unit = {} // Created OnClick lamba
 ) {
     Column(
         modifier = modifier
@@ -29,6 +34,12 @@ fun SessionsScreen(
             .padding(16.dp),
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
+        ElevatedButton(onClick = onButtonClick) {
+            Text( // Created button for navigating to speakers
+                text = stringResource(R.string.speakers_label),
+                style = MaterialTheme.typography.headlineLarge
+            )
+        }
         uiState.sessionInfos.forEach {
             Text(it.session.name)
         }
