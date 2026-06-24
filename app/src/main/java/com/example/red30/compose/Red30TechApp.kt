@@ -9,8 +9,10 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.red30.compose.ui.Red30TechBottomBar
 import com.example.red30.compose.ui.Red30TechNavHost
@@ -30,10 +32,14 @@ fun Red30TechApp(
 ) {
     Red30TechTheme {
         val navController = rememberNavController()
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
 
         Scaffold(
             bottomBar = { // Created new bottom navigation bar
-                Red30TechBottomBar()
+                Red30TechBottomBar(
+                    navHost = navController,
+                    currentDestination = currentDestination)
             }
         ) { innerPadding ->
             Red30TechNavHost(
