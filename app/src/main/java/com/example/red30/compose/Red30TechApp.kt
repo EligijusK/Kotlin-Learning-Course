@@ -1,11 +1,18 @@
 package com.example.red30.compose
 
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import com.example.red30.compose.ui.Red30TechBottomBar
 import com.example.red30.compose.ui.Red30TechNavHost
 import com.example.red30.compose.ui.theme.Red30TechTheme
 import com.example.red30.data.ConferenceRepository
@@ -24,7 +31,11 @@ fun Red30TechApp(
     Red30TechTheme {
         val navController = rememberNavController()
 
-        Scaffold { innerPadding ->
+        Scaffold(
+            bottomBar = { // Created new bottom navigation bar
+                Red30TechBottomBar()
+            }
+        ) { innerPadding ->
             Red30TechNavHost(
                 modifier = modifier.padding(innerPadding),
                 navController = navController,
