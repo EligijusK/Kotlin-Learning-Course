@@ -1,32 +1,92 @@
 package com.example.red30.compose.ui.screen
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Assistant
+import androidx.compose.material.icons.filled.ErrorOutline
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.red30.R
+import com.example.red30.compose.ui.component.EmptyConferenceData
+import com.example.red30.compose.ui.component.LoadingIndicator
+import com.example.red30.compose.ui.component.SessionItem
 import com.example.red30.compose.ui.theme.Red30TechTheme
 import com.example.red30.data.ConferenceDataUiState
+import com.example.red30.data.Day
 import com.example.red30.data.SessionInfo
 import com.example.red30.data.fake
 import com.example.red30.data.fake3
+import com.example.red30.data.fake4
+import com.example.red30.data.fake5
+import com.example.red30.data.fake6
 import com.example.red30.data.favorites
+import com.example.red30.data.sessionInfosByDay
+import com.example.red30.data.speakers
 
 @Composable
 fun FavoritesScreen(
     modifier: Modifier = Modifier,
     uiState: ConferenceDataUiState,
+    onSessionClick: (sessionId: Int) -> Unit = {},
+    onFavoriteClick: (sessionId: Int) -> Unit = {},
 ) {
     Column(
-        modifier = modifier
-            .fillMaxSize()
-            .padding(16.dp),
+        modifier = modifier.fillMaxSize()
     ) {
-        uiState.favorites.forEach {
-            Text(it.session.name)
+        when {
+            uiState.isLoading -> LoadingIndicator()
+            uiState.favorites.isEmpty() -> EmptyConferenceData(
+                modifier = modifier,
+                message = "Your favorites will be here",
+                imageVector = Icons.Filled.Assistant
+            )
+            else -> {
+                FavoritesList(
+                    modifier = modifier,
+                    uiState = uiState,
+                    onSessionClick = onSessionClick,
+                    onFavoriteClick = onFavoriteClick,
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun FavoritesList(
+    modifier: Modifier = Modifier,
+    uiState: ConferenceDataUiState,
+    onSessionClick: (sessionId: Int) -> Unit = {},
+    onFavoriteClick: (sessionId: Int) -> Unit = {},
+) {
+
+    LazyVerticalGrid(
+        modifier = modifier.fillMaxSize(),
+        columns = GridCells.Fixed(1)
+    ) {
+        items(uiState.favorites) {
+            SessionItem(
+                sessionInfo = it,
+                onSessionClick = onSessionClick,
+                onFavoriteClick = onFavoriteClick
+            )
         }
     }
 }
@@ -41,7 +101,37 @@ private fun FavoritesScreenPreview() {
                     SessionInfo.fake().copy(isFavorite = true),
                     SessionInfo.fake3().copy(isFavorite = true),
                 )
-            )
+            ),
         )
     }
 }
+
+@Preview
+@Composable
+private fun SessionScreenLoadingPreview() {
+    Red30TechTheme {
+        Surface {
+            FavoritesScreen(
+                uiState = ConferenceDataUiState(isLoading = true),
+                onSessionClick = {}
+            )
+        }
+    }
+}
+
+@Preview
+@Composable
+private fun FavoritesScreenEmptyDataPreview() {
+    Red30TechTheme {
+        Surface {
+            FavoritesScreen(
+                uiState = ConferenceDataUiState(
+                    isLoading = false,
+                ),
+                onSessionClick = {}
+            )
+        }
+    }
+}
+
+

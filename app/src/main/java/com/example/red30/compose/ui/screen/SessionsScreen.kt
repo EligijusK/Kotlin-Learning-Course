@@ -30,6 +30,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.red30.R
+import com.example.red30.compose.ui.component.EmptyConferenceData
+import com.example.red30.compose.ui.component.LoadingIndicator
 import com.example.red30.compose.ui.component.SessionItem
 import com.example.red30.compose.ui.theme.Red30TechTheme
 import com.example.red30.data.ConferenceDataUiState
@@ -55,7 +57,11 @@ fun SessionsScreen(
     ) {
         when {
             uiState.isLoading -> LoadingIndicator()
-            uiState.sessionInfos.isEmpty() -> EmptyConferenceData()
+            uiState.sessionInfos.isEmpty() -> EmptyConferenceData(
+                modifier = modifier,
+                message = stringResource(R.string.unable_to_load_conference_data_error),
+                imageVector = Icons.Filled.ErrorOutline
+            )
             else -> {
                 SessionsList(
                     modifier = modifier,
@@ -110,42 +116,6 @@ fun SessionsList(
                 onFavoriteClick = onFavoriteClick
             )
         }
-    }
-}
-
-@Composable
-fun LoadingIndicator(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier.fillMaxSize(),
-        verticalArrangement = Arrangement.Center,
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        CircularProgressIndicator(
-            modifier = Modifier.size(64.dp)
-        )
-        Spacer(Modifier.height(24.dp))
-        Text(stringResource(R.string.loading))
-    }
-}
-
-@Composable
-fun EmptyConferenceData(modifier: Modifier = Modifier) {
-    Column(
-        modifier = modifier.fillMaxSize(),
-        horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
-    ) {
-        Icon(
-            modifier = Modifier.size(80.dp),
-            imageVector = Icons.Filled.ErrorOutline,
-            tint = MaterialTheme.colorScheme.onSecondaryContainer,
-            contentDescription = null
-        )
-        Spacer(Modifier.height(24.dp))
-        Text(
-            text = stringResource(R.string.unable_to_load_conference_data_error),
-            style = MaterialTheme.typography.titleMedium
-        )
     }
 }
 

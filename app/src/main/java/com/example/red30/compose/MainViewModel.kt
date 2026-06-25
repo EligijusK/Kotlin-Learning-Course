@@ -98,4 +98,5 @@ class MainViewModel(
         savedStateHandle["day"] = day
         _uiState.update { it.copy(day = day) }
     }
+
 }
