@@ -8,6 +8,7 @@ import com.example.red30.R
 import com.example.red30.data.ConferenceDataUiState
 import com.example.red30.data.ConferenceRepository
 import com.example.red30.data.getSelectedSession
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
@@ -15,6 +16,7 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlin.time.Duration.Companion.seconds
 
 private const val TAG = "MainViewModel"
 
@@ -41,11 +43,12 @@ class MainViewModel(
     init {
         viewModelScope.launch {
             try {
+                delay(2.seconds)
                 val sessionsInfos = conferenceRepository.loadConferenceInfo()
                 _uiState.update {
                     it.copy(
                         isLoading = false,
-                        sessionInfos = sessionsInfos
+//                        sessionInfos = sessionsInfos
                     )
                 }
                 Log.i(TAG, "initialized: $sessionsInfos")
