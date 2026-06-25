@@ -89,6 +89,6 @@ class MainViewModel(
     }
 
     fun shownSnackbar() = _uiState.update {
-        it.copy(snackbarMessage = null)
+        it.copy(snackbarMessage = null) // This is used because state is saved after first time and it won't show anymore.
     }
 }
