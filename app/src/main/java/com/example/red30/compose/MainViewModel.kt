@@ -12,6 +12,7 @@ import com.example.red30.data.getSelectedSession
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
@@ -41,15 +42,19 @@ class MainViewModel(
 
     init {
         viewModelScope.launch {
+
             try {
-                val sessionsInfos = conferenceRepository.loadConferenceInfo()
-                _uiState.update {
-                    it.copy(
-                        isLoading = false,
-                        sessionInfos = sessionsInfos
-                    )
-                }
-                Log.i(TAG, "initialized: $sessionsInfos")
+                savedStateHandle.getStateFlow<Day>("day", initialValue = Day.Day1) // This allows to react declaratively to any changes
+                    .collect() { day -> // Getting day from collection
+                        _uiState.update {
+                            it.copy(
+                                isLoading = false,
+                                sessionInfos = conferenceRepository.loadConferenceInfo(),
+                                day = day
+                            )
+                        }
+                    }
+
             } catch (_: Exception) {
                 _uiState.update {
                     it.copy(
@@ -94,6 +99,7 @@ class MainViewModel(
     }
 
     fun setDay(day: Day) {
-
+        savedStateHandle["day"] = day
+        _uiState.update { it.copy(day = day) }
     }
 }
