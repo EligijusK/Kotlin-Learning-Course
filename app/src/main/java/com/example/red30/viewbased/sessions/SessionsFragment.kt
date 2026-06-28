@@ -78,7 +78,7 @@ class SessionsFragment : Fragment() {
 
         binding.recyclerview.apply {
             setHasFixedSize(true)
-            layoutManager = getAppLayoutManager(context = requireContext())
+            layoutManager = getAppLayoutManager(context = requireContext()) // This chooses layout manager based on devise width
             this.adapter = adapter
         }
 

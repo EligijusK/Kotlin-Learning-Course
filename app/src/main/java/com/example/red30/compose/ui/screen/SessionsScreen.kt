@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.FilterChip
@@ -75,9 +76,10 @@ fun SessionsList(
 
     LazyVerticalGrid(
         modifier = modifier.fillMaxSize(),
-        columns = GridCells.Fixed(1)
+        columns = GridCells.Adaptive(330.dp) // To do dynamic layouts this needs to be changed to Adaptive
+        // 330.dp means minimum element size
     ) {
-        item {
+        item(span = { GridItemSpan(maxLineSpan)}) { // max line span makes that items should use all space in colum
             Row(
                 modifier = Modifier.padding(16.dp),
                 horizontalArrangement = Arrangement.spacedBy(16.dp)
